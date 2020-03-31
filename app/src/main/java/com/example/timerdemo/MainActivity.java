@@ -1,7 +1,7 @@
 package com.example.timerdemo;
 
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.CountDownTimer;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Handler handler = new Handler();
+        new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.i("Sekunden übrig ", String.valueOf(millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                Log.i("Wir sind durch", "Der Countdown ist vollendet");
+            }
+        }.start();
+
+        //Timer 1. Variante
+        /*final Handler handler = new Handler();
 
         Runnable run = new Runnable() {
             @Override
@@ -25,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         handler.post(run);
+        */
 
     }
 }
